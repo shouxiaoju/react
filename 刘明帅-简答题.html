@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="body">
+    <script>
+        /* 简答题一 */
+        /* 
+        A=1
+        ...
+        Z=26
+        AA=27
+        AZ=52
+        BA=53
+        
+        */
+        let num = 53
+
+        function convert(num) {
+            var strt = "";
+            if (num <= 26 && num >= 0) {
+                strt = String.fromCharCode(num + 64)
+                console.log(strt);
+            } else if (num > 26) {
+                console.log("取余", num / 26, Math.ceil(num / 26));
+                strt = String.fromCharCode(Math.ceil(num / 26) - 1 + 64) + String.fromCharCode(num - (Math.ceil(num /
+                        26) -
+                    1) * 26 + 64)
+                console.log(strt);
+            }
+        }
+
+        convert(num)
+    </script>
+    <script>
+        /* 简答题二 */
+        (function () {
+            var a = 0
+
+            function run() {
+                a = 1;
+
+                function run2() {
+                    console.log(a); // undefined  这里的a是变量提升相当于是var a并没有赋值
+                    var a = 3;
+                    console.log(a); // 3  这里的a是进行了赋值3后的a所以为3
+                }
+                run2();
+                console.log(a); // 1 这里的a不受run2中的a影响，所以拿到的为run中的a=1
+                function run3(a) {
+                    console.log(a); //8 这里的a是run3(8)函数执行时传的参数8
+                    a = 5;
+                }
+                run3(8);
+                console.log(a); //1 这里的a不受run2，和run3中的a影响
+                function run4() {
+                    a = 4;
+                }
+                console.log(a); //1 这里的a不受run2,run3和run4中的a影响
+                return run4;
+            }
+            var result = run(); //执行run函数 a=1，result是一个函数
+            console.log(a); //1 这里得到的实际是
+            result(); //执行函数将a=4进行返回
+            console.log(a); //4 这里得到的实际是run return出的a=4
+        })() //函数自调用执行run()
+
+        /* 简答题三 */
+        function parseQueryString(url) {
+            var str = url.split("?")[1].split("&");
+            console.log(url.split("?")[1].split("&"))
+            let obj = {}
+            str.map(item => {
+                if (!obj[item.split("=")[0]]) {
+                    obj[item.split("=")[0]] = item.split("=")[1]
+                }
+            })
+            return obj
+        }
+        var url = "http://witmax.cn/index.php?key0=0&key1=1&key2=2"
+        var ps = parseQueryString(url)
+        console.log(ps['key1']);
+
+        /* 测试题3 */
+
+        let arr = [1, 2, 4, 6, 7, 9, 8, 3, 5]
+        let temp
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr.length; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        console.log(arr)
+        /* 测试6 */
+        let Body = document.getElementsByClassName("body")
+        let Div = document.createElement("div")
+        let p = document.createElement("p")
+        p.innerText = "测试"
+        Div.setAttribute("class", "text")
+        Body[0].appendChild(Div)
+        Div.appendChild(p)
+    </script>
+</body>
+
+</html>

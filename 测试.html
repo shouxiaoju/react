@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="#" name="form1">
+        <input type="button" name="button1" value="按钮 1" />
+        <input type="button" name="button2" value="按钮 2" />
+    </form>
+
+    <script>
+        /* 输出结果为什么 */
+        function fn(y) {
+
+            var x = y * y
+            return x
+        }
+        for (x = 0; x < 5; x++) {
+
+            y = fn(x)
+            console.log(y); //0,1,4,9,16
+        }
+        /*  */
+        function Student(name) {
+            this.name = name;
+            this.move = function () {
+                console.log(this.name + '准备移动了');
+            }
+        }
+        Student.prototype.move = function () {
+            console.log(this.name + '开始移动了');
+        }
+        var st = new Student('李四')
+        console.dir(st)
+        st.move()
+
+        /*  */
+        let obj = / /
+        console.log(typeof obj);
+
+        /*  */
+        function handleEvent1() {
+            document.form1.button2.click()
+        }
+
+        function handleEvent2() {
+            alert(event.srcElement.name + "的" + event.type + "事件触发")
+        }
+        document.form1.button1.onclick = handleEvent1
+        document.form1.button2.onclick = handleEvent2
+        /*  */
+        console.dir(window);
+
+        /*  */
+        function Fibs(num) {
+            var sum = 0;
+            var fib = [1, 1];
+            var odd = []; //用于储存偶数
+
+            //求出小于等于num的所有数
+            for (var i = 2; i <= num; i++) {
+                if (fib[i - 2] + fib[i - 1] <= num) {
+                    fib[i] = fib[i - 2] + fib[i - 1]
+                }
+            };
+            console.log(fib)
+            //把求出的数组中的所有偶数数找出来
+            for (var j = 0; j < fib.length; j++) {
+                if (fib[j] % 2 == 0) {
+                    odd.push(fib[j]);
+                }
+            }
+
+            //计算奇数数组之和
+            sum = odd.reduce((a, b) => a + b);
+
+            return sum;
+
+        }
+        console.log("斐波那契额", Fibs(4));
+        console.log("斐波那契额", Fibs(5));
+        console.log("斐波那契额", Fibs(6));
+        console.log("斐波那契额", Fibs(7));
+        console.log("斐波那契额", Fibs(55));
+    </script>
+</body>
+
+</html>
