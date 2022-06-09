@@ -17,7 +17,7 @@ function hand2(){
    
 }
 useEffect(() => {
-    console.log(refcount.current.textContent);
+   // console.log(refcount.current.textContent);
 }, [count])
     return(
         <div>
